@@ -1,13 +1,13 @@
 import React, { ReactNode } from 'react'
 import Link from 'next/link'
 import Head from 'next/head'
-import { Button, Container, Grid, Theme, withStyles } from '@material-ui/core'
+import { Button, Container, Grid, withStyles } from '@material-ui/core'
 import LayoutStyles from './Layout.styles';
 
 type Props = {
   children?: ReactNode
   title?: string,
-  classes: Theme
+  classes: any
 }
 
 const Layout = ({ children, title = 'This is the default title', classes }: Props) => (
@@ -33,7 +33,9 @@ const Layout = ({ children, title = 'This is the default title', classes }: Prop
     </Grid>
     <Grid className={ classes.fullHeight }>
       <Container>
+        <>
         {children}
+        </>
       </Container>
     </Grid>
     <Grid item>
