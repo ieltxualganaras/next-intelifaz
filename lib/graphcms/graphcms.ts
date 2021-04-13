@@ -108,5 +108,6 @@ export async function getBlogBySlug(slug = '', preview = false) {
       }
     }
   );
+  console.log(data);
   return data;
 }

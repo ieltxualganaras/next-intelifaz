@@ -35,8 +35,6 @@ const WithStaticProps = ({ blogs }: Props) => {
 
 export async function getStaticProps({ preview = false }) {
   const blogs = (await getAllBlogs(preview)) || []
-  console.log(blogs);
-
   return {
     props: { blogs, preview },
   }

@@ -3,13 +3,16 @@ import ErrorPage from 'next/error'
 import { getBlogBySlug, getAllBlogsWithSlug } from '../../lib/graphcms/graphcms';
 import BlogTitle from '../../modules/blog/components/BlogTitle';
 import Head from 'next/head'
+import Image from 'next/image'
 import Layout from '../../components/Layout';
+import { Typography } from '@material-ui/core';
 
 export default function Blog({ blog }:any) {
   const router = useRouter()
   if (!router.isFallback && !blog?.slug) {
     return <ErrorPage statusCode={404} />
   }
+  console.log(blog);
 
   return (
     <Layout>
@@ -27,6 +30,8 @@ export default function Blog({ blog }:any) {
                 {/* <meta property="og:image" content={post.ogImage.url} /> */}
               </Head>
               <BlogTitle blogTitle={ blog.title } />
+              <Image width="500" height="300" src={ blog.ogImage.url }/>
+              <Typography >{ blog.content }</Typography>
               {/* <BlogHeader
                 title={post.title}
                 coverImage={post.coverImage}

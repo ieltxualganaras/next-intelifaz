@@ -1,41 +1,48 @@
 import React, { ReactNode } from 'react'
 import Link from 'next/link'
 import Head from 'next/head'
+import { Button, Container, Grid, Theme, withStyles } from '@material-ui/core'
+import LayoutStyles from './Layout.styles';
 
 type Props = {
   children?: ReactNode
-  title?: string
+  title?: string,
+  classes: Theme
 }
 
-const Layout = ({ children, title = 'This is the default title' }: Props) => (
+const Layout = ({ children, title = 'This is the default title', classes }: Props) => (
   <div>
     <Head>
       <title>{title}</title>
       <meta charSet="utf-8" />
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
     </Head>
-    <header>
-      <nav>
-        <Link href="/">
-          <a>Home</a>
-        </Link>{' '}
-        |{' '}
-        <Link href="/about">
-          <a>About</a>
-        </Link>{' '}
-        |{' '}
-        <Link href="/users">
-          <a>Users List</a>
-        </Link>{' '}
-        | <a href="/api/users">Users API</a>
-      </nav>
-    </header>
-    {children}
-    <footer>
-      <hr />
-      <span>I'm here to stay (Footer)</span>
-    </footer>
+    <Grid container direction="column">
+      <Grid item container alignItems="flex-end">
+        <Grid item>
+          <Link href="/">
+            <Button>Home</Button>
+          </Link>
+        </Grid>
+        <Grid item>
+          <Link href="/blog">
+            <Button>Blog</Button>
+          </Link>
+        </Grid>
+      </Grid>
+    </Grid>
+    <Grid className={ classes.fullHeight }>
+      <Container>
+        {children}
+      </Container>
+    </Grid>
+    <Grid item>
+      <footer>
+        <hr />
+        <span>I'm here to stay (Footer)</span>
+      </footer>
+    </Grid>
   </div>
 )
 
-export default Layout
+export default withStyles(LayoutStyles)(Layout)
