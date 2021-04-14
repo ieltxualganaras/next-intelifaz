@@ -34,7 +34,7 @@ const Ssr = ({ blogs }: Props) => {
 // }
 
 
-export async function getServerSideProps({ preview = true }) {
+export async function getServerSideProps({ preview = false }) {
   const blogs = (await getAllBlogs(preview)) || []
   return {
     props: { blogs, preview },
